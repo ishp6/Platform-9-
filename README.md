@@ -1,5 +1,5 @@
 [![Live Demo](https://img.shields.io/badge/Live-Demo-green)](https://hogwarts-express-ui.vercel.app)
-# 🚂 Platform 9¾ — Booking UI
+# 🚂 Platform 9¾ 
 
 Interactive Hogwarts Express booking experience built with pure frontend technologies.
 
