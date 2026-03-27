@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Platform 9¾ — Hogwarts Express</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="bgCanvas"></canvas>
+<div class="grain"></div>
+
+<!-- ════════════════ NAVIGATION ════════════════ -->
+<nav class="nav">
+  <div class="nav-logo" onclick="showPage('home')">9¾</div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')"      id="nav-home"      class="active">Home</a></li>
+    <li><a onclick="showPage('timetable')" id="nav-timetable">Timetable</a></li>
+    <li><a onclick="showPage('map')"       id="nav-map">Platform Map</a></li>
+    <li><a onclick="showPage('trolley')"   id="nav-trolley">Trolley</a></li>
+    <li><a onclick="showPage('luggage')"   id="nav-luggage">Luggage</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('booking')">✦ Book Ticket</button>
+</nav>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════ HOME ════════════════ -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-eyebrow">King's Cross Station · London · Est. 1935</div>
+
+    <div class="hero-title">
+      <span class="ht-pre">ticket to the</span>
+      <span class="ht-big">9¾</span>
+      <span class="ht-sub">Hogwarts Express — Platform Nine and Three Quarters</span>
+    </div>
+
+    <div class="hero-div">
+      <div class="hdl"></div>
+      <span style="color:var(--gold);font-size:1rem;">⚯͛</span>
+      <div class="hdl"></div>
+    </div>
+
+    <p class="hero-desc">
+      The scarlet steam engine departs on the first of September.<br>
+      Your adventure awaits beyond the barrier.
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn-p" onclick="showPage('booking')">✦ Reserve Your Seat</button>
+      <button class="btn-s" onclick="showPage('timetable')">View Timetable</button>
+    </div>
+
+    <div class="features">
+      <div class="feat" onclick="showPage('timetable')">
+        <span class="feat-icon">🗓️</span>
+        <div class="feat-title">Timetable</div>
+        <div class="feat-desc">Departure schedules for all routes throughout the academic year.</div>
+      </div>
+      <div class="feat" onclick="showPage('map')">
+        <span class="feat-icon">🗺️</span>
+        <div class="feat-title">Platform Map</div>
+        <div class="feat-desc">Navigate King's Cross and locate the concealed platform entrance.</div>
+      </div>
+      <div class="feat" onclick="showPage('trolley')">
+        <span class="feat-icon">🍫</span>
+        <div class="feat-title">Trolley Service</div>
+        <div class="feat-desc">Pre-order Cauldron Cakes, Chocolate Frogs & more for your journey.</div>
+      </div>
+      <div class="feat" onclick="showPage('luggage')">
+        <span class="feat-icon">🧳</span>
+        <div class="feat-title">Luggage</div>
+        <div class="feat-desc">Regulations for trunks, owls, and all magical belongings.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TIMETABLE ════════════════ -->
+<div class="page" id="page-timetable">
+  <div class="section">
+    <div class="sh">
+      <div class="sh-eye">Platform 9¾ · Departures</div>
+      <div class="sh-title">Timetable</div>
+      <div class="sh-rule"><div class="srl"></div><div class="srg">✦</div><div class="srl"></div></div>
+    </div>
+
+    <div class="tt-head">
+      <div class="tt-hc">Departure</div>
+      <div class="tt-hc">Destination</div>
+      <div class="tt-hc">Platform</div>
+      <div class="tt-hc">Class</div>
+      <div class="tt-hc">Status</div>
+    </div>
+
+    <div class="tt-row" onclick="showToast('Boarding now — Platform 9¾')">
+      <div class="tt-c dep">01 Sep · 11:00</div>
+      <div class="tt-c">Hogsmeade Station</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">All</div>
+      <div class="tt-c"><span class="badge bboard">Boarding</span></div>
+    </div>
+    <div class="tt-row" onclick="showToast('Service running on time')">
+      <div class="tt-c dep">25 Dec · 09:00</div>
+      <div class="tt-c">Hogsmeade (Festive)</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">First</div>
+      <div class="tt-c"><span class="badge bon">On Time</span></div>
+    </div>
+    <div class="tt-row" onclick="showToast('Minor delay — enchanted fog on the line')">
+      <div class="tt-c dep">15 Jun · 10:00</div>
+      <div class="tt-c">King's Cross (Return)</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">All</div>
+      <div class="tt-c"><span class="badge bdel">+12 min</span></div>
+    </div>
+    <div class="tt-row" onclick="showToast('Express service — non-stop to Hogsmeade')">
+      <div class="tt-c dep">01 Sep · 14:00</div>
+      <div class="tt-c">Hogsmeade Express</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">First</div>
+      <div class="tt-c"><span class="badge bon">On Time</span></div>
+    </div>
+    <div class="tt-row" onclick="showToast('Advance booking strongly recommended')">
+      <div class="tt-c dep">31 Oct · 11:00</div>
+      <div class="tt-c">Hogsmeade (Halloween)</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">All</div>
+      <div class="tt-c"><span class="badge bon">On Time</span></div>
+    </div>
+    <div class="tt-row" onclick="showToast('Spring term service')">
+      <div class="tt-c dep">06 Jan · 09:30</div>
+      <div class="tt-c">Hogsmeade (Spring)</div>
+      <div class="tt-c">9¾</div>
+      <div class="tt-c">All</div>
+      <div class="tt-c"><span class="badge bon">On Time</span></div>
+    </div>
+
+    <p style="margin-top:22px;font-style:italic;font-size:.83rem;color:rgba(245,230,200,.28);text-align:center;">
+      Click any row for details · Times shown GMT · Subject to Ministry of Magic regulation
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════ PLATFORM MAP ════════════════ -->
+<div class="page" id="page-map">
+  <div class="section">
+    <div class="sh">
+      <div class="sh-eye">King's Cross · London</div>
+      <div class="sh-title">Platform Map</div>
+      <div class="sh-rule"><div class="srl"></div><div class="srg">✦</div><div class="srl"></div></div>
+    </div>
+
+    <div class="map-outer">
+      <div class="map-grid">
+
+        <!-- Left platforms -->
+        <div class="map-col">
+          <div class="map-plat" onclick="showToast('Platform 7 — East Midlands Railway')">
+            <div class="mp-num">7</div>
+            <div><div class="mp-name">Platform 7</div><div class="mp-dest">East Midlands Railway</div></div>
+          </div>
+          <div class="map-plat" onclick="showToast('Platform 8 — LNER to Edinburgh')">
+            <div class="mp-num">8</div>
+            <div><div class="mp-name">Platform 8</div><div class="mp-dest">LNER · Edinburgh</div></div>
+          </div>
+          <div class="map-plat" onclick="showToast('Platform 9 — Great Northern')">
+            <div class="mp-num">9</div>
+            <div><div class="mp-name">Platform 9</div><div class="mp-dest">Great Northern</div></div>
+          </div>
+        </div>
+
+        <!-- Centre barrier wall -->
+        <div class="wall-col">
+          <div class="wall-label">Barrier</div>
+          <div class="wall-bricks">
+            <div class="wb"></div><div class="wb"></div>
+            <div class="wb"></div><div class="wb"></div>
+            <div class="wb"></div><div class="wb"></div>
+            <div class="wb"></div><div class="wb"></div>
+            <div class="wb"></div><div class="wb"></div>
+            <div class="wb"></div><div class="wb"></div>
+          </div>
+          <div class="wall-label">Barrier</div>
+        </div>
+
+        <!-- Right platforms -->
+        <div class="map-col">
+          <div class="map-plat special" onclick="showToast('Run straight at the barrier — do not stop.')">
+            <div class="mp-num" style="font-size:1.05rem">9¾</div>
+            <div>
+              <div class="mp-name" style="color:var(--gold-light)">Platform 9¾ ✦</div>
+              <div class="mp-dest" style="color:rgba(201,168,76,.48)">Hogwarts Express · Concealed</div>
+            </div>
+          </div>
+          <div class="map-plat" onclick="showToast('Platform 10 — Thameslink')">
+            <div class="mp-num">10</div>
+            <div><div class="mp-name">Platform 10</div><div class="mp-dest">Thameslink</div></div>
+          </div>
+          <div class="map-plat" onclick="showToast('Platform 11 — Great Northern')">
+            <div class="mp-num">11</div>
+            <div><div class="mp-name">Platform 11</div><div class="mp-dest">Great Northern</div></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="map-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(201,168,76,.38);border:1px solid var(--gold)"></div><div class="leg-txt">Magical Platform</div></div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(13,21,48,.8);border:1px solid rgba(201,168,76,.13)"></div><div class="leg-txt">Muggle Platform</div></div>
+        <div class="leg-item"><div class="leg-dot" style="background:rgba(35,35,55,.6);border:1px solid #3a3a4e"></div><div class="leg-txt">Concealment Barrier</div></div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <div class="n-head">⚠ Concealment Notice</div>
+      <div class="n-body">Walk with purpose toward the barrier between platforms 9 and 10. Do not run unless the barrier is crowded. Do not attempt to pass through if wearing obviously Muggle clothing without first consulting station staff. The platform is Fidelius-adjacent — Muggles perceive only a brick wall.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TROLLEY ════════════════ -->
+<div class="page" id="page-trolley">
+  <div class="section">
+    <div class="sh">
+      <div class="sh-eye">On-Board Service · The Famous Trolley</div>
+      <div class="sh-title">Trolley Service</div>
+      <div class="sh-rule"><div class="srl"></div><div class="srg">✦</div><div class="srl"></div></div>
+    </div>
+
+    <div class="troll-grid">
+      <div class="troll-card">
+        <span class="tc-ico">🐸</span>
+        <div class="tc-name">Chocolate Frogs</div>
+        <div class="tc-desc">Each comes with a collectible Famous Wizard card. Over 101 varieties.</div>
+        <div class="tc-price">3 Knuts</div>
+        <button class="tc-add" onclick="showToast('Chocolate Frogs added to your journey!')">Add to Journey</button>
+      </div>
+      <div class="troll-card">
+        <span class="tc-ico">🧁</span>
+        <div class="tc-name">Cauldron Cakes</div>
+        <div class="tc-desc">Rich chocolate sponge shaped like a tiny cauldron. Warm when served.</div>
+        <div class="tc-price">2 Knuts</div>
+        <button class="tc-add" onclick="showToast('Cauldron Cakes added — delicious choice!')">Add to Journey</button>
+      </div>
+      <div class="troll-card">
+        <span class="tc-ico">🍬</span>
+        <div class="tc-name">Bertie Bott's Beans</div>
+        <div class="tc-desc">Every flavour imaginable. Enter at your own peril. Not for the faint-hearted.</div>
+        <div class="tc-price">1 Knut</div>
+        <button class="tc-add" onclick="showToast('Brave soul — Bertie Bott\'s added!')">Add to Journey</button>
+      </div>
+      <div class="troll-card">
+        <span class="tc-ico">🥧</span>
+        <div class="tc-name">Pumpkin Pasties</div>
+        <div class="tc-desc">Flaky pastry filled with sweet spiced pumpkin. A Hogwarts Express classic.</div>
+        <div class="tc-price">2 Knuts</div>
+        <button class="tc-add" onclick="showToast('Pumpkin Pasties added to your journey!')">Add to Journey</button>
+      </div>
+      <div class="troll-card">
+        <span class="tc-ico">🍭</span>
+        <div class="tc-name">Liquorice Wands</div>
+        <div class="tc-desc">Real liquorice fashioned into a wand. Occasionally sparks — harmlessly.</div>
+        <div class="tc-price">1 Knut</div>
+        <button class="tc-add" onclick="showToast('Liquorice Wands added to your journey!')">Add to Journey</button>
+      </div>
+      <div class="troll-card">
+        <span class="tc-ico">☕</span>
+        <div class="tc-name">Butterbeer Flask</div>
+        <div class="tc-desc">The beloved wizarding beverage. Warm, butterscotch, deeply comforting.</div>
+        <div class="tc-price">5 Knuts</div>
+        <button class="tc-add" onclick="showToast('Butterbeer Flask added — cheers!')">Add to Journey</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ LUGGAGE ════════════════ -->
+<div class="page" id="page-luggage">
+  <div class="section">
+    <div class="sh">
+      <div class="sh-eye">Travel Information · Ministry Approved</div>
+      <div class="sh-title">Luggage Policy</div>
+      <div class="sh-rule"><div class="srl"></div><div class="srg">✦</div><div class="srl"></div></div>
+    </div>
+
+    <div class="lug-rules">
+      <div class="rule-card ok">
+        <h3><span>✓</span> Permitted Items</h3>
+        <ul>
+          <li>One standard school trunk (max 150 litres)</li>
+          <li>One owl, cat, or toad per student</li>
+          <li>Approved spell books and class equipment</li>
+          <li>Brooms (stored in luggage van)</li>
+          <li>Telescopes and star charts</li>
+          <li>Cauldrons (pewter, size 2 standard)</li>
+        </ul>
+      </div>
+      <div class="rule-card no">
+        <h3><span>✗</span> Prohibited Items</h3>
+        <ul>
+          <li>Dragon eggs or any live dragon species</li>
+          <li>Jinxed or cursed objects (undeclared)</li>
+          <li>Three-headed dogs or dangerous beasts</li>
+          <li>Muggle electronic devices</li>
+          <li>Unregistered animagi (must declare)</li>
+          <li>Dark Arts paraphernalia of any kind</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="lug-form">
+      <div class="lf-title">Add Luggage to Booking</div>
+      <div class="counter-row">
+        <div><div class="cr-name">Standard Trunk</div><div class="cr-note">Up to 150 litres — 2 Sickles</div></div>
+        <div class="cr-ctrl">
+          <button class="cbtn" onclick="chg('trunk', -1)">−</button>
+          <div class="cnum" id="cnt-trunk">0</div>
+          <button class="cbtn" onclick="chg('trunk', 1)">+</button>
+        </div>
+      </div>
+      <div class="counter-row">
+        <div><div class="cr-name">Pet Carrier</div><div class="cr-note">Owl / cat / toad — 1 Sickle</div></div>
+        <div class="cr-ctrl">
+          <button class="cbtn" onclick="chg('pet', -1)">−</button>
+          <div class="cnum" id="cnt-pet">0</div>
+          <button class="cbtn" onclick="chg('pet', 1)">+</button>
+        </div>
+      </div>
+      <div class="counter-row">
+        <div><div class="cr-name">Broom Bag</div><div class="cr-note">Stored in luggage van — free</div></div>
+        <div class="cr-ctrl">
+          <button class="cbtn" onclick="chg('broom', -1)">−</button>
+          <div class="cnum" id="cnt-broom">0</div>
+          <button class="cbtn" onclick="chg('broom', 1)">+</button>
+        </div>
+      </div>
+      <button class="btn-p" onclick="showToast('Luggage preferences saved!')">Confirm Luggage</button>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ BOOKING ════════════════ -->
+<div class="page" id="page-booking">
+  <div class="section">
+    <div class="sh">
+      <div class="sh-eye">Reserve Your Passage</div>
+      <div class="sh-title">Book a Ticket</div>
+      <div class="sh-rule"><div class="srl"></div><div class="srg">✦</div><div class="srl"></div></div>
+    </div>
+
+    <!-- Progress Steps -->
+    <div class="b-steps">
+      <div class="b-step active" id="bst-1"><div class="b-circ">I</div><div class="b-lbl">Journey</div></div>
+      <div class="b-step"        id="bst-2"><div class="b-circ">II</div><div class="b-lbl">Passenger</div></div>
+      <div class="b-step"        id="bst-3"><div class="b-circ">III</div><div class="b-lbl">Seat</div></div>
+      <div class="b-step"        id="bst-4"><div class="b-circ">IV</div><div class="b-lbl">Review</div></div>
+    </div>
+
+    <div class="booking-wrap">
+
+      <!-- Panel 1: Journey Details -->
+      <div class="b-panel active" id="bp-1">
+        <div class="fg">
+          <div class="fgrp">
+            <label class="flbl">From</label>
+            <input class="finp" id="f-from" value="London King's Cross">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">To</label>
+            <input class="finp" id="f-to" value="Hogsmeade Station">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Departure Date</label>
+            <input class="finp" id="f-date" type="date" value="2026-09-01">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Return Date (optional)</label>
+            <input class="finp" id="f-return" type="date">
+          </div>
+          <div class="fgrp full">
+            <label class="flbl">Travel Class</label>
+            <div class="class-picker">
+              <label class="cls-opt">
+                <input type="radio" name="cls" value="standard" checked>
+                <div class="cls-card"><span class="cc-ico">🪑</span><div class="cc-name">Standard</div><div class="cc-price">5 Galleons</div></div>
+              </label>
+              <label class="cls-opt">
+                <input type="radio" name="cls" value="prefect">
+                <div class="cls-card"><span class="cc-ico">🏅</span><div class="cc-name">Prefect</div><div class="cc-price">8 Galleons</div></div>
+              </label>
+              <label class="cls-opt">
+                <input type="radio" name="cls" value="first">
+                <div class="cls-card"><span class="cc-ico">👑</span><div class="cc-name">First Class</div><div class="cc-price">12 Galleons</div></div>
+              </label>
+            </div>
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Adults</label>
+            <select class="fsel" id="f-adults">
+              <option>1</option><option>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Children (under 11)</label>
+            <select class="fsel" id="f-kids">
+              <option>0</option><option>1</option><option>2</option><option>3</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-nav">
+          <span></span>
+          <button class="btn-next" onclick="goStep(2)">Continue ›</button>
+        </div>
+      </div>
+
+      <!-- Panel 2: Passenger Details -->
+      <div class="b-panel" id="bp-2">
+        <div class="fg">
+          <div class="fgrp">
+            <label class="flbl">First Name</label>
+            <input class="finp" id="f-fname" placeholder="e.g. Harry">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Surname</label>
+            <input class="finp" id="f-lname" placeholder="e.g. Potter">
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Hogwarts House</label>
+            <select class="fsel" id="f-house">
+              <option value="">— Select House —</option>
+              <option>Gryffindor 🦁</option>
+              <option>Hufflepuff 🦡</option>
+              <option>Ravenclaw 🦅</option>
+              <option>Slytherin 🐍</option>
+            </select>
+          </div>
+          <div class="fgrp">
+            <label class="flbl">Year</label>
+            <select class="fsel" id="f-year">
+              <option value="">— Select Year —</option>
+              <option>First Year</option><option>Second Year</option>
+              <option>Third Year</option><option>Fourth Year</option>
+              <option>Fifth Year</option><option>Sixth Year</option>
+              <option>Seventh Year</option><option>Staff / Faculty</option>
+            </select>
+          </div>
+          <div class="fgrp full">
+            <label class="flbl">Owl Address (for confirmation)</label>
+            <input class="finp" id="f-email" type="email" placeholder="your.owl@hogwarts.wiz">
+          </div>
+          <div class="fgrp full">
+            <label class="flbl">Special Requirements</label>
+            <textarea class="ftxt" id="f-special" placeholder="Dietary restrictions, accessibility, animagi declaration, dangerous creature accompaniment…"></textarea>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="goStep(1)">‹ Back</button>
+          <button class="btn-next" onclick="goStep(3)">Select Seat ›</button>
+        </div>
+      </div>
+
+      <!-- Panel 3: Seat Selection -->
+      <div class="b-panel" id="bp-3">
+        <p style="font-style:italic;color:var(--pdim);margin-bottom:22px;font-size:.93rem;">
+          Select your seat in Carriage 3. Click to choose — taken seats shown in red.
+        </p>
+        <div class="seat-map-outer">
+          <div class="seat-map" id="seatMap"></div>
+        </div>
+        <div class="seat-leg">
+          <div class="sl-i"><div class="sl-b" style="background:rgba(13,21,48,.85);border-color:rgba(201,168,76,.15)"></div>Available</div>
+          <div class="sl-i"><div class="sl-b" style="background:rgba(201,168,76,.22);border-color:var(--gold)"></div>Selected</div>
+          <div class="sl-i"><div class="sl-b" style="background:rgba(80,40,40,.4);border-color:rgba(139,26,26,.3)"></div>Taken</div>
+        </div>
+        <div class="form-nav" style="margin-top:22px;">
+          <button class="btn-back" onclick="goStep(2)">‹ Back</button>
+          <button class="btn-next" onclick="goStep(4)">Review Booking ›</button>
+        </div>
+      </div>
+
+      <!-- Panel 4: Review & Confirm -->
+      <div class="b-panel" id="bp-4">
+        <div class="rev-card" id="revCard"></div>
+        <div class="form-nav">
+          <button class="btn-back" onclick="goStep(3)">‹ Back</button>
+          <button class="btn-next" onclick="confirmBooking()">✦ Confirm Booking</button>
+        </div>
+      </div>
+
+      <!-- Success Screen -->
+      <div class="success-wrap" id="sucWrap">
+        <span class="suc-ico">🎉</span>
+        <div class="suc-title">All Aboard!</div>
+        <p class="suc-sub">
+          Your ticket has been reserved.<br>
+          An owl will deliver your confirmation within the hour.
+        </p>
+        <div class="ticket-card" id="ticketCard"></div>
+        <button class="btn-p" onclick="resetBooking()">Book Another Journey</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ TRAIN SCENE ════════════════ -->
+<div class="train-scene">
+  <div class="steam-glow"></div>
+  <div class="train-body">
+    <div class="t-eng">
+      <div class="t-chim">
+        <span class="t-smk">💨</span>
+        <span class="t-smk">💨</span>
+        <span class="t-smk">💨</span>
+      </div>
+      <div class="t-wh tw1"></div>
+      <div class="t-wh tw2"></div>
+      <div class="t-wh tw3"></div>
+      <div class="t-wh tw4"></div>
+    </div>
+    <div class="t-car"><div class="t-wh cw1"></div><div class="t-wh cw2"></div></div>
+    <div class="t-car"><div class="t-wh cw1"></div><div class="t-wh cw2"></div></div>
+    <div class="t-car"><div class="t-wh cw1"></div><div class="t-wh cw2"></div></div>
+    <div class="t-car"><div class="t-wh cw1"></div><div class="t-wh cw2"></div></div>
+  </div>
+  <div class="track-wrap">
+    <div class="track-rail t"></div>
+    <div class="track-rail b"></div>
+    <div class="ties-wrap" id="ties"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
