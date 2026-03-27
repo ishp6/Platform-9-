@@ -17,6 +17,10 @@ https://hogwarts-express-ui.vercel.app
 
 HTML · CSS(advanced animations) · JavaScript(DOM & Logic)
 
+# 🚂 Platform 9¾ — Booking UI
+
+![Preview](./assets/preview.png)
+
 ## 💡 Note
 
 Focused on UI/UX, animations, and real-world booking logic.
